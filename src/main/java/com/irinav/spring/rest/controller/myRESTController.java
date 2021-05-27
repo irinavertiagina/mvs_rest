@@ -4,10 +4,7 @@ import com.irinav.spring.rest.entity.Employee;
 import com.irinav.spring.rest.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +30,24 @@ public class myRESTController {
         Employee employee = employeeService.getEmployee(id);
         return employee;
     }
+
+    @PostMapping("/employee")
+    public Employee addEmployee(@RequestBody Employee employee){
+        employeeService.saveEmployee(employee);
+        return employee;
+    }
+
+
+    @PutMapping("/employee")
+    public Employee update(@RequestBody Employee employee){
+        employeeService.saveEmployee(employee);
+        return employee;
+    }
+    @DeleteMapping("/employee/{id}")
+    public String delete(@PathVariable int id){
+        employeeService.deleteEmployee(id);
+        return "Employee N "+ id +" was deleted";
+    }
+
 
 }
